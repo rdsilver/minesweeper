@@ -37,10 +37,10 @@ p {
 
 #face-button {
   width: 30px;
-    height: 30px;
-    background-image: url('images/happy_face.png');
-    background-size: 25px 26px;
-    margin-top: 5px;
+  height: 30px;
+  background-image: url('images/happy_face.png');
+  background-size: 25px 26px;
+  margin-top: 5px;
 }
 
 #face-button:focus {
@@ -49,9 +49,9 @@ p {
 
 .input-style {
   border: 1px solid #ccc;
-    background-color: #fff;
-    width: 80px;
-    height: 27px;
+  background-color: #fff;
+  width: 80px;
+  height: 27px;
 }
 
 .column-left{
