@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 function createArray(length) {
   var arr = new Array(length || 0),

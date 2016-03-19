@@ -5,7 +5,7 @@ var sketchOptions = {
   bgColor : '#8c969e',
   canvasId: 'defaultCanvas0',
   defaultGameSize: 10,
-  defaultBombNum: 10, 
+  defaultBombNum: 10,
 };
 
 var game;

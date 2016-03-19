@@ -3,8 +3,8 @@
 class Board {
   constructor(size, numBombs, cellSize, visual) {
     this.bombNeighborhood = [[0, -1], [-1, 0], [1, 0], [0, 1], [-1, -1], [1, -1], [1, 1], [-1, 1]];
-	  this.grid = this.setBombs(size, numBombs);
-	  this.calculateNeighborValues();
+    this.grid = this.setBombs(size, numBombs);
+    this.calculateNeighborValues();
     this.setAllAttribrute('seenAs', 'blank');
     this.state = 'live';
     this.cellSize = cellSize;
@@ -14,40 +14,40 @@ class Board {
     this.visual = visual;
 
     this.changeFace('happy_face');
-	}
+  }
 
-	setBombs(size, numBombs) {
-		var flatGrid = _.map(createArray(size*size), cell => cell = {});
-		var bombIndexes = _.sampleSize(_.range(0, flatGrid.length), numBombs);
+  setBombs(size, numBombs) {
+    var flatGrid = _.map(createArray(size*size), cell => cell = {});
+    var bombIndexes = _.sampleSize(_.range(0, flatGrid.length), numBombs);
 
-		_.each(bombIndexes, i => {
-			flatGrid[i].actual = 'explodedBomb';
-		});
+    _.each(bombIndexes, i => {
+      flatGrid[i].actual = 'explodedBomb';
+    });
 
-		return _.chunk(flatGrid, size);
-	}
+    return _.chunk(flatGrid, size);
+  }
 
-	calculateNeighborValues() {
-		_.each(this.grid, (arr, x) => {
-			_.each(arr, (cell, y)=> {
-				var bombsTouching = 0;
+  calculateNeighborValues() {
+    _.each(this.grid, (arr, x) => {
+      _.each(arr, (cell, y)=> {
+        var bombsTouching = 0;
 
-				_.each(this.bombNeighborhood, dir => {
-					// Check if direction will be inbound and if there is a bomb at that spot
-					if (notOutOfBounds(x+dir[0], y+dir[1], this.grid.length)) {
-						if (this.grid[x+dir[0]][y+dir[1]].actual === 'explodedBomb') {
-							bombsTouching++;
-						}
-					}
-				});
+        _.each(this.bombNeighborhood, dir => {
+          // Check if direction will be inbound and if there is a bomb at that spot
+          if (notOutOfBounds(x+dir[0], y+dir[1], this.grid.length)) {
+            if (this.grid[x+dir[0]][y+dir[1]].actual === 'explodedBomb') {
+              bombsTouching++;
+            }
+          }
+        });
 
         // Not a bomb, add neighbor count
-				if (cell.actual === undefined) {
-					cell.actual = bombsTouching;
-				}
-			});
-		});
-	}
+        if (cell.actual === undefined) {
+          cell.actual = bombsTouching;
+        }
+      });
+    });
+  }
 
   setAllAttribrute(key, value) {
     _.each(_.flatten(this.grid), cell => {
@@ -101,7 +101,7 @@ class Board {
     _.each(this.bombNeighborhood, dir => {
       var newX = x+dir[0];
       var newY = y+dir[1];
-      if (notOutOfBounds(newX, newY, this.grid.length)) { 
+      if (notOutOfBounds(newX, newY, this.grid.length)) {
         var cell = this.grid[newX][newY];
 
         if (!cell.cleared && cell.seenAs === 'blank') {
@@ -110,7 +110,7 @@ class Board {
           } else if (_.isInteger(cell.actual)) {
             cell.seenAs = cell.actual;
             cell.cleared = true;
-          }        
+          }
         }
       }
     });
@@ -123,7 +123,7 @@ class Board {
         if (cell.actual !== 'explodedBomb') {
           win = false;
         }
-      } 
+      }
     });
 
     if (win) {

@@ -10,9 +10,9 @@ var controls = {
     $('#size-of-board').val(10);
   },
 
-	onSizeChange: function() {
-		$('#size-of-board').change(controls.restrictBombNum).change(controls.resetGame);
-	},
+  onSizeChange: function() {
+    $('#size-of-board').change(controls.restrictBombNum).change(controls.resetGame);
+  },
 
   onBombChange: function() {
     $('#number-of-bombs').change(controls.resetGame);
@@ -43,14 +43,14 @@ var controls = {
   preventRightClickModalBox: function() {
     $('#canvas').bind('contextmenu', function(e) {
       return false;
-    }); 
+    });
   }
 };
 
 
 $(function() {
   controls.addSizes();
-	controls.onSizeChange();
+  controls.onSizeChange();
   controls.onBombChange();
   controls.onFaceClick();
   controls.preventRightClickModalBox();

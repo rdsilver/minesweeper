@@ -1,25 +1,25 @@
 'use strict';
 
 class Solver {
-	constructor(boardSize, numBombs, timesToSolve) {
-		this.startingTime;
-		this.boardSize = boardSize;
-		this.numBombs = numBombs;
-		this.timesToSolve = timesToSolve;
-		this.timesSolved = 0;
-	}
+  constructor(boardSize, numBombs, timesToSolve) {
+    this.startingTime;
+    this.boardSize = boardSize;
+    this.numBombs = numBombs;
+    this.timesToSolve = timesToSolve;
+    this.timesSolved = 0;
+  }
 
-	solve() {
+  solve() {
     var steps;
-		this.startingTime = millis();
+    this.startingTime = millis();
 
-		while (this.timesToSolve > 0) {
-			game = new Board(this.boardSize, this.numBombs, 25, false);
+    while (this.timesToSolve > 0) {
+      game = new Board(this.boardSize, this.numBombs, 25, false);
       steps = 0;
 
       this.firstMoves();
 
-			while(game.state === 'live') {
+      while(game.state === 'live') {
         var toCheck = this.checkForMustFlags();
         this.checkForMustClicks(toCheck);
 
@@ -27,18 +27,18 @@ class Solver {
         if (toCheck.length === 0) {
           this.clickRandomBlank();
         }
-			}
+      }
 
-			if (game.state === 'win') {
-				this.timesSolved+=1;
-			}
+      if (game.state === 'win') {
+        this.timesSolved+=1;
+      }
 
-			this.timesToSolve--;
-		}
+      this.timesToSolve--;
+    }
     var timeTaken = _.round((millis() - this.startingTime)/1000, 2);
     console.log(('Solved: ' + this.timesSolved + ' Time Taken: ' + timeTaken + ' seconds'));
     return [this.timesSolved, timeTaken];
-	}
+  }
 
   firstMoves() {
     // Click in the middle, this gives us a better chance to get a nice blank area

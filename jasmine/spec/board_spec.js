@@ -1,16 +1,16 @@
 'use strict';
 
 describe('Board Class Methods', () => {
-	beforeEach(() => {
-		this.testBoard = new Board(5, 2, 25, false);
+  beforeEach(() => {
+    this.testBoard = new Board(5, 2, 25, false);
     this.otherBoard = new Board(10, 0, 25, false);
-	});
+  });
 
-	it('should create a new board with specific attributes', () => {
-		expect(this.testBoard.grid.length).toEqual(5);
-		expect(this.testBoard.grid[0].length).toEqual(5);
+  it('should create a new board with specific attributes', () => {
+    expect(this.testBoard.grid.length).toEqual(5);
+    expect(this.testBoard.grid[0].length).toEqual(5);
     expect(this.testBoard.cellSize).toEqual(25);
-	});
+  });
 
   it('should create a grid with 2 bombs', () => {
     var numBombs = _.countBy(_.flatten(this.testBoard.grid), cell => cell.actual).explodedBomb;
@@ -46,5 +46,5 @@ describe('Board Class Methods', () => {
     this.otherBoard.checkWin();
     expect(this.otherBoard.state).toEqual('win');
   });
-  
+
 });
