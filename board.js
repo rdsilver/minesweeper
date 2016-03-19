@@ -1,7 +1,7 @@
 'use strict';
 
 class Board {
-    constructor(size, numBombs, cellSize, visual) {
+  constructor(size, numBombs, cellSize, visual) {
     this.bombNeighborhood = [[0, -1], [-1, 0], [1, 0], [0, 1], [-1, -1], [1, -1], [1, 1], [-1, 1]];
 	  this.grid = this.setBombs(size, numBombs);
 	  this.calculateNeighborValues();
