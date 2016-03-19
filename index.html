@@ -1,0 +1,43 @@
+<html>
+	<head>
+	  <meta charset='UTF-8'>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js'></script>
+      <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.20/p5.min.js'></script>
+      <script src='util.js'></script>
+      <script src='userDomInteractions.js'></script>
+      <script src='sketch.js'></script>
+      <script src='board.js'></script>
+      <script src='solver.js'></script>
+	  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+	  <link rel='stylesheet' type='text/css' href='style.css'>
+	  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	  <title>Minesweeper</title>
+	</head>
+
+	<body>
+		<div class='box-shadow' id='sidebar'>
+			<h2 class='italics dark-blue underline'>Minesweeper</h2>
+
+			<div>
+				<p class='dark-blue'>Size</p>
+				<select class='input-style' id='size-of-board'>
+				</select> <br>
+			</div>
+
+			<div>
+				<p class='dark-blue'>Bombs</p>
+				<input type='number' class='input-style' id='number-of-bombs' min='1' max='100' step='1' value='10'>
+			</div>
+		</div>
+
+		<span class='absolute box-shadow ' id='game-holder'>
+			<div class='minesweeper-gray' id='game-buttons'>
+				<div class='column-center'>
+					<button id='face-button' type='button'></button>
+				</div>
+			</div>
+			<span id='canvas'></span>
+		</span>
+	</body>
+</html>
