@@ -1,0 +1,95 @@
+body   { 
+	padding: 0;
+    margin: 0;
+	background: #8C969E;
+	font-family: 'Roboto', sans-serif;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */  
+    text-align: center;
+} 
+
+p {
+	margin-bottom: 5px;
+	font-size:18px;
+}
+
+#sidebar {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 180px;
+	background-color: #F7FCFF;
+	background: -webkit-linear-gradient(top, #f7fcff, #e7f0f7);
+}
+
+#game-holder {
+	top: 20%;
+	left: 37%;
+}
+
+#game-buttons {
+	width: 100%;
+	height: 40px;
+}
+
+#face-button {
+	width: 30px;
+    height: 30px;
+    background-image: url('images/happy_face.png');
+    background-size: 25px 26px;
+    margin-top: 5px;
+}
+
+#face-button:focus {
+	outline: none;
+}
+
+.input-style {
+	border: 1px solid #ccc;
+    background-color: #fff;
+    width: 80px;
+    height: 27px;
+}
+
+.column-left{ 
+	float: left;
+	width: 33.33%; 
+	height: 100%;
+}
+
+.column-center{ 
+	display: inline-block; 
+	width: 33.33%; 
+	height: 100%;
+}
+
+.column-right{ 
+	float: right; 
+	width: 33.33%; 
+	height: 100%;
+}
+
+.italics {
+	font-style: italic;
+}
+
+.dark-blue {
+	color: rgb(0, 0, 100);
+}
+
+.box-shadow {
+	box-shadow: 1px 0 3px 0 #404A52, 1px 0 0 #646D74;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.minesweeper-gray {
+	background-color: rgb(192, 192, 192);
+}
+
+
