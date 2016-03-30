@@ -1,6 +1,6 @@
 var controls = {
   addSizes: function() {
-    _.each(_.range(5, 20), i => {
+    _.each(_.range(5, 21), i => {
       $('#size-of-board').append($('<option></option>').val(i).html(i+'x'+i));
     });
 
@@ -30,6 +30,16 @@ var controls = {
     $('#face-button').click(controls.resetGame);
   },
 
+  onSolveClick: function() {
+    $('#solve-button').click(controls.solver);
+  },
+
+  solver: function() {
+    var size = $('#size-of-board').val();
+    var numBombs = $('#number-of-bombs').val();
+    new Solver(size, numBombs, 1).solve();
+  },
+
   resetGame: function() {
     var size = $('#size-of-board').val();
     var numBombs = $('#number-of-bombs').val();
@@ -51,4 +61,5 @@ $(function() {
   controls.onBombChange();
   controls.onFaceClick();
   controls.preventRightClickModalBox();
+  controls.onSolveClick();
 });

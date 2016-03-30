@@ -28,8 +28,6 @@ p {
 #game-holder {
   top: 20%;
   left: 37%;
-  width: 250px;
-  height: 290px;
 }
 
 #game-buttons {
@@ -45,7 +43,11 @@ p {
   margin-top: 5px;
 }
 
-#face-button:focus {
+#solve-button {
+  margin-top: 50px;
+}
+
+.no-outline {
   outline: none;
 }
 

@@ -8,13 +8,10 @@ class Solver {
   }
 
   solve() {
-    var steps;
     this.startingTime = millis();
 
     while (this.timesToSolve > 0) {
-      game = new Board(this.boardSize, this.numBombs, sketchOptions.cellSize, false);
-      steps = 0;
-
+      game = new Board(this.boardSize, this.numBombs, sketchOptions.cellSize, true);
       this.firstMoves();
 
       while(game.state === 'live') {
@@ -22,10 +19,9 @@ class Solver {
         this.checkForMustClicks(toCheck);
 
         // If no progress from these methods, lets click a random blank cell
-        if (toCheck.length === 0) {
+        if (toCheck.length === 0 && game.state !== 'win') {
           this.clickRandomBlank();
         }
-
       }
 
       if (game.state === 'win') {
@@ -34,6 +30,9 @@ class Solver {
 
       this.timesToSolve--;
     }
+
+
+
     var timeTaken = _.round((millis() - this.startingTime)/1000, 2);
     console.log(('Solved: ' + this.timesSolved + ' Time Taken: ' + timeTaken + ' seconds'));
     return [this.timesSolved, timeTaken];
