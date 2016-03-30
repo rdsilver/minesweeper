@@ -1,24 +1,25 @@
-'use strict';
-
 class Board {
   constructor(size, numBombs, cellSize, visual) {
-    this.bombNeighborhood = [[0, -1], [-1, 0], [1, 0], [0, 1], [-1, -1], [1, -1], [1, 1], [-1, 1]];
-    this.grid = this.setBombs(size, numBombs);
-    this.calculateNeighborValues();
-    this.setAllAttribrute('seenAs', 'blank');
-    this.state = 'live';
+    this.size = size;
+    this.numBombs = numBombs;
     this.cellSize = cellSize;
+    this.visual = visual;
+    this.bombNeighborhood = [[0, -1], [-1, 0], [1, 0], [0, 1], [-1, -1], [1, -1], [1, 1], [-1, 1]];
+    this.state = 'live';
+    this.firstPress = true;
+    this.changeFace('happy_face');
     this.pressedCell;
 
-    // Do we need to worry about visuals?
-    this.visual = visual;
-
-    this.changeFace('happy_face');
+    // This will be overwritten when the first click comes in
+    this.grid = _.chunk(_.map(createArray(size*size), cell => cell = {}), this.size);
+    this.setAllAttribrute('seenAs', 'blank');
   }
 
-  setBombs(size, numBombs) {
+  setBombs(size, numBombs, clickedCell) {
     var flatGrid = _.map(createArray(size*size), cell => cell = {});
-    var bombIndexes = _.sampleSize(_.range(0, flatGrid.length), numBombs);
+    var clickedCellIndex = size * clickedCell.x + clickedCell.y;
+    var validBombIndexes = _.pull(_.range(0, flatGrid.length), clickedCellIndex);
+    var bombIndexes = _.sampleSize(validBombIndexes, numBombs);
 
     _.each(bombIndexes, i => {
       flatGrid[i].actual = 'explodedBomb';
@@ -75,6 +76,13 @@ class Board {
     } else {
       this.unPressCell();
     }
+  }
+
+  setUpBoard(x, y) {
+    this.grid = this.setBombs(this.size, this.numBombs, {x:x, y:y});
+    this.calculateNeighborValues();
+    this.setAllAttribrute('seenAs', 'blank');
+    this.firstPress = false;
   }
 
   checkConditions(x, y) {
@@ -145,6 +153,10 @@ class Board {
   }
 
   pressCell(x, y) {
+    if (this.firstPress) {
+      this.setUpBoard(x, y);
+    }
+
     if (this.grid[x][y].seenAs === 'blank') {
       this.grid[x][y].seenAs = 'pressed';
       this.pressedCell = [x, y];

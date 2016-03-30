@@ -1,5 +1,3 @@
-'use strict';
-
 class Solver {
   constructor(boardSize, numBombs, timesToSolve) {
     this.startingTime;
@@ -14,7 +12,7 @@ class Solver {
     this.startingTime = millis();
 
     while (this.timesToSolve > 0) {
-      game = new Board(this.boardSize, this.numBombs, 25, false);
+      game = new Board(this.boardSize, this.numBombs, sketchOptions.cellSize, false);
       steps = 0;
 
       this.firstMoves();
@@ -23,14 +21,15 @@ class Solver {
         var toCheck = this.checkForMustFlags();
         this.checkForMustClicks(toCheck);
 
-        // If no progress from these methods, lets click a random blank
+        // If no progress from these methods, lets click a random blank cell
         if (toCheck.length === 0) {
           this.clickRandomBlank();
         }
+
       }
 
       if (game.state === 'win') {
-        this.timesSolved+=1;
+        this.timesSolved += 1;
       }
 
       this.timesToSolve--;
@@ -62,7 +61,7 @@ class Solver {
         var seenAs = cell.seenAs;
         var complete = cell.noMoreFlagChecking;
 
-        // We only care about cells that have a positive number
+        // We only care about cells that have bombs as neighbors
         if (_.indexOf(['flag', 'blank', 0], seenAs) === -1 && !complete) {
           var bombCoords = {};
           _.each(game.bombNeighborhood, dir => {

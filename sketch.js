@@ -1,5 +1,3 @@
-'use strict';
-
 var sketchOptions = {
   cellSize : 25,
   bgColor : '#8c969e',

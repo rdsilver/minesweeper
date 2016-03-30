@@ -1,5 +1,3 @@
-'use strict';
-
 describe('Util Class Methods', () => {
   it('should create an array', () => {
     var arr = createArray(5);

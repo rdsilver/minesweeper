@@ -1,5 +1,3 @@
-'use strict';
-
 describe('Board Class Methods', () => {
   beforeEach(() => {
     this.testBoard = new Board(5, 2, 25, false);
@@ -13,6 +11,7 @@ describe('Board Class Methods', () => {
   });
 
   it('should create a grid with 2 bombs', () => {
+    this.testBoard.pressCell(0,0);
     var numBombs = _.countBy(_.flatten(this.testBoard.grid), cell => cell.actual).explodedBomb;
     expect(numBombs).toEqual(2);
   });
@@ -35,6 +34,7 @@ describe('Board Class Methods', () => {
   });
 
   it('checks whether to sweep the area clicked', () => {
+    this.otherBoard.pressCell(0,0);
     this.otherBoard.checkClearArea(0, 0);
     var numSeenAsZero = _.countBy(_.flatten(this.otherBoard.grid), cell => cell.seenAs)[0];
 
@@ -42,6 +42,7 @@ describe('Board Class Methods', () => {
   });
 
   it('should check win condition', () => {
+    this.otherBoard.pressCell(0,0);
     this.otherBoard.checkClearArea(0, 0);
     this.otherBoard.checkWin();
     expect(this.otherBoard.state).toEqual('win');

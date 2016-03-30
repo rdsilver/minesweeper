@@ -1,13 +1,10 @@
-'use strict';
-
 var controls = {
   addSizes: function() {
-    for(var index=5;index<=20;index++) {
-        $('#size-of-board').append($('<option></option>').val(index).html(index+'x'+index));
-    }
+    _.each(_.range(5, 20), i => {
+      $('#size-of-board').append($('<option></option>').val(i).html(i+'x'+i));
+    });
 
-    // Default Value 10x10
-    $('#size-of-board').val(10);
+    $('#size-of-board').val(sketchOptions.defaultGameSize);
   },
 
   onSizeChange: function() {
@@ -19,13 +16,13 @@ var controls = {
   },
 
   restrictBombNum: function() {
-    var sizeSquared = Math.pow($(this).val(), 2);
+    var maxSize = Math.pow($(this).val(), 2) - 1;
     var input = $('#number-of-bombs');
 
-    input.prop('max', sizeSquared);
+    input.prop('max', maxSize);
 
-    if (input.val() > sizeSquared) {
-      input.val(sizeSquared);
+    if (input.val() > maxSize) {
+      input.val(maxSize);
     }
   },
 

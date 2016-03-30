@@ -1,5 +1,3 @@
-'use strict';
-
 function createArray(length) {
   var arr = new Array(length || 0),
   i = length;
@@ -30,4 +28,13 @@ function notOutOfBounds(x, y, max) {
   }
 
   return true;
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }
